@@ -5,34 +5,27 @@
  * @format
  */
 
-import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import React, { useState } from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import AuthScreen from './src/screens/AuthScreen';
+import store from './src/store/store';
+import { observer } from 'mobx-react-lite';
+const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView>
-      <Text>test</Text>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        { store.isLogined ? (
+          <Stack.Screen name="Home" component={HomeScreen} />
+        ) : (
+          <Stack.Screen name="Auth" component={AuthScreen} />
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+export default observer(App);

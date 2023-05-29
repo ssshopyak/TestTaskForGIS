@@ -16,7 +16,10 @@ function App(): JSX.Element {
   const [initializing, setInitializing] = useState(true)
 
   function onAuthStateChanged(user: any) {
-    store.setUsername(user.displayName)
+    console.log(user)
+    if (user) {
+      store.setUser(user)
+    }
     if (initializing) {
       setInitializing(false)
     }

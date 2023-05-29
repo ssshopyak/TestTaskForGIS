@@ -2,15 +2,11 @@ import {Dimensions, StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
     height: Dimensions.get('window').height,
-  },
-  video: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
   },
 })
 
